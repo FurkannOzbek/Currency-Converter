@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <header class="header">
+            <nav>
+                <a href="">Add or Update Currency</a>
+                <a href="">List Currencies</a>
+                <a href="">Set Alert</a>
+                <a href="">Most Moving Currency</a>
+                <a href="">Search</a>
+            </nav>
+        </header>
+
+        <section class="currency-converter-section">
+            <form id="currency-converter-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="amount">Amount:</label>
+                        <input type="number" id="amount" name="amount" height="600" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="from-currency">From Currency:</label>
+                        <select id="from-currency" name="from-currency" required>
+                            <option value="USD">USD - US Dollar</option>
+                            <option value="EUR">EUR - Euro</option>
+                            <option value="GBP">GBP - British Pound</option>
+                            <option value="JPY">JPY - Japanese Yen</option>
+                        </select>
+                    </div>
+                    <div class="btn-exchange">
+                        <button></button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="to-currency">To Currency:</label>
+                        <select id="to-currency" name="to-currency" required>
+                            <option value="USD">USD - US Dollar</option>
+                            <option value="EUR">EUR - Euro</option>
+                            <option value="GBP">GBP - British Pound</option>
+                            <option value="JPY">JPY - Japanese Yen</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button type="submit" class="btn-convert">Convert</button>
+                </div>
+            </form>
+            <div id="conversion-result"></div>
+        </section>
+        <section class="list-currencies">
+            <h1 class="h1-list">List of the currencies</h1>
+            <h1 class="h1-list">Section-2 On Progress</h1>
+
+        </section>
+        <section class="add-update">
+            <h1 class="h1-list">Add or Update Currency</h1>
+            <div class="container">
+                <div class="form-container">
+                    <h2>Add New Currency</h2>
+                    <form action="/submit_form1" method="post">
+                        <div class="form-group1">
+                            <label for="amount">Rate</label>
+                            <input type="number" id="amount" name="amount" height="600" required>
+                        </div>
+                        <div class="form-group1">
+                            <label for="from-currency">From Currency</label>
+                            <select id="from-currency" name="from-currency" required>
+                                <option value="USD">USD - US Dollar</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="GBP">GBP - British Pound</option>
+                                <option value="JPY">JPY - Japanese Yen</option>
+                            </select>
+                        </div>
+                        <div class="form-group1">
+                            <label for="to-currency">To Currency</label>
+                            <select id="to-currency" name="to-currency" required>
+                                <option value="USD">USD - US Dollar</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="GBP">GBP - British Pound</option>
+                                <option value="JPY">JPY - Japanese Yen</option>
+
+
+                            </select>
+
+                        </div>
+                        <div class="btn-submit"><button type="submit" class="button">Add Currency</button> </div>
+                    </form>
+                </div>
+
+                <div class="form-container">
+                    <h2>Currency Update</h2>
+                    <form action="/submit_form1" method="post">
+                        <div class="form-group1">
+                            <label for="amount">Rate</label>
+                            <input type="number" id="amount" name="amount" height="600" required>
+                        </div>
+                        <div class="form-group1">
+                            <label for="from-currency">From Currency</label>
+                            <select id="from-currency" name="from-currency" required>
+                                <option value="USD">USD - US Dollar</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="GBP">GBP - British Pound</option>
+                                <option value="JPY">JPY - Japanese Yen</option>
+                            </select>
+                        </div>
+                        <div class="form-group1">
+                            <label for="to-currency">To Currency</label>
+                            <select id="to-currency" name="to-currency" required>
+                                <option value="USD">USD - US Dollar</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="GBP">GBP - British Pound</option>
+                                <option value="JPY">JPY - Japanese Yen</option>
+
+
+                            </select>
+
+                        </div>
+                        <div class="btn-submit"><button type="submit" class="button2">Update
+                                Currency</button> </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section class="most"></section>
+        </div>
+    </main>
+</body>
+
+</html>

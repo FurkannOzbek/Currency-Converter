@@ -1,0 +1,178 @@
+body {
+  font-family: "Lato", sans-serif;
+  background-color: #00415a;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* CSS for the first section */
+
+.header {
+  height: 400px;
+  font-size: 20px;
+  padding: 30px;
+  text-align: right;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  width: 100%;
+  background-image: url("./src/graph.jpg");
+  background-repeat: round;
+}
+
+.header nav a {
+  margin-right: 15px;
+  text-decoration: none;
+  padding-right: 5%;
+  color: #c8d9ed;
+}
+
+.currency-converter-section {
+  padding: 20px;
+}
+
+#currency-converter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3%;
+  background-color: white;
+  margin-top: -7%;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 200px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.form-group input {
+  width: 360px;
+  height: 70px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.form-group select {
+  height: 70px;
+  width: 313px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+.btn-exchange {
+  margin-left: -90px;
+  margin-right: -90px;
+  margin-top: 40px;
+}
+
+button {
+  align-self: flex-start;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#conversion-result {
+  margin-top: 20px;
+}
+.btn-container {
+  justify-content: flex-end;
+  display: flex;
+  margin-top: 20px;
+}
+/* CSS for the second section(list) */
+
+.list-currencies {
+  margin: 10%;
+}
+.h1-list {
+  color: white;
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  font-size: 28px;
+  color: #c8d9ed;
+}
+
+/* CSS for the third section(add update) */
+
+.form-container {
+  width: 25%;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-height: 200px;
+}
+
+/* Style for the form container */
+.container {
+  text-align: center;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.form-group1 {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+  min-width: 50px;
+  margin-bottom: 30px;
+}
+.form-group1 label {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+.form-group1 input {
+  width: 250px;
+  height: 40px;
+
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  text-align: center;
+}
+.form-group1 select {
+  height: 30px;
+  width: 250px;
+  padding-left: 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.btn-submit {
+  color: white;
+  margin-bottom: 50px;
+}
+.button {
+  background-color: green;
+}
+.button2 {
+  background-color: rgb(21, 154, 207);
+}
