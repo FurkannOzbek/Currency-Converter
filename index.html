@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +27,7 @@
         </header>
 
         <section class="currency-converter-section">
-            <form id="currency-converter-form">
+            <form onsubmit="convertCurrency(event)" id="currency-converter-form">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="amount">Amount:</label>
@@ -36,32 +36,32 @@
 
                     <div class="form-group">
                         <label for="from-currency">From Currency:</label>
-                        <select id="from-currency" name="from-currency" required>
-                            <option value="USD">USD - US Dollar</option>
-                            <option value="EUR">EUR - Euro</option>
-                            <option value="GBP">GBP - British Pound</option>
-                            <option value="JPY">JPY - Japanese Yen</option>
+                        <select class="currency-dropdown" id="from-currency" name="from-currency" required>
+
                         </select>
                     </div>
                     <div class="btn-exchange">
-                        <button></button>
+                        <button style="color:blue;background-color: white; font-size: 24px ;" type="button"
+                            onclick="swapCurrencies()">
+                            &#8644; <!-- Unicode character for a double arrow -->
+                        </button>
                     </div>
 
                     <div class="form-group">
                         <label for="to-currency">To Currency:</label>
-                        <select id="to-currency" name="to-currency" required>
-                            <option value="USD">USD - US Dollar</option>
-                            <option value="EUR">EUR - Euro</option>
-                            <option value="GBP">GBP - British Pound</option>
-                            <option value="JPY">JPY - Japanese Yen</option>
+                        <select class="currency-dropdown" id="to-currency" name="to-currency" required>
+
                         </select>
                     </div>
                 </div>
                 <div class="btn-container">
-                    <button type="submit" class="btn-convert">Convert</button>
+                    <button type="submit" class="btn-convert" onclick="convertCurrency(event)">Convert</button>
                 </div>
+                <p id="amountWanted" class="amountWanted"> </p>
+                <p id="amountResult" class="amountResult"></p>
+                <div id="rates" class="rates"></div>
             </form>
-            <div id="conversion-result"></div>
+
         </section>
         <section class="list-currencies">
             <h1 class="h1-list">List of the currencies</h1>
@@ -73,71 +73,49 @@
             <div class="container">
                 <div class="form-container">
                     <h2>Add New Currency</h2>
-                    <form action="/submit_form1" method="post">
+                    <form id="add-currency-form" onsubmit="addCurrency(event)">
                         <div class="form-group1">
-                            <label for="amount">Rate</label>
-                            <input type="number" id="amount" name="amount" height="600" required>
+                            <label for="new-currency-rate">Rate</label>
+                            <input type="number" step="0.00001" id="new-currency-rate" name="new-currency-rate"
+                                required>
                         </div>
                         <div class="form-group1">
-                            <label for="from-currency">From Currency</label>
-                            <select id="from-currency" name="from-currency" required>
-                                <option value="USD">USD - US Dollar</option>
-                                <option value="EUR">EUR - Euro</option>
-                                <option value="GBP">GBP - British Pound</option>
-                                <option value="JPY">JPY - Japanese Yen</option>
-                            </select>
+                            <label for="new-currency-code">Currency Code</label>
+                            <input type="text" id="new-currency-code" name="new-currency-code" required>
                         </div>
                         <div class="form-group1">
-                            <label for="to-currency">To Currency</label>
-                            <select id="to-currency" name="to-currency" required>
-                                <option value="USD">USD - US Dollar</option>
-                                <option value="EUR">EUR - Euro</option>
-                                <option value="GBP">GBP - British Pound</option>
-                                <option value="JPY">JPY - Japanese Yen</option>
-
-
-                            </select>
-
+                            <label for="new-currency-name">Currency Name</label>
+                            <input type="text" id="new-currency-name" name="new-currency-name" required>
                         </div>
-                        <div class="btn-submit"><button type="submit" class="button">Add Currency</button> </div>
+                        <div class="btn-submit">
+                            <button type="submit" class="button">Add Currency</button>
+                        </div>
                     </form>
                 </div>
 
                 <div class="form-container">
                     <h2>Currency Update</h2>
-                    <form action="/submit_form1" method="post">
+                    <form id="update-currency-form" onsubmit="updateCurrency(event)">
                         <div class="form-group1">
-                            <label for="amount">Rate</label>
-                            <input type="number" id="amount" name="amount" height="600" required>
+                            <label for="update-rate">Rate</label>
+                            <input type="number" step="0.00001" id="update-rate" name="update-rate" required>
                         </div>
                         <div class="form-group1">
-                            <label for="from-currency">From Currency</label>
-                            <select id="from-currency" name="from-currency" required>
-                                <option value="USD">USD - US Dollar</option>
-                                <option value="EUR">EUR - Euro</option>
-                                <option value="GBP">GBP - British Pound</option>
-                                <option value="JPY">JPY - Japanese Yen</option>
-                            </select>
+                            <label for="to-currency">Currency</label>
+                            <select class="currency-dropdown" id="to-currency-update" name="to-currency"
+                                required></select>
                         </div>
-                        <div class="form-group1">
-                            <label for="to-currency">To Currency</label>
-                            <select id="to-currency" name="to-currency" required>
-                                <option value="USD">USD - US Dollar</option>
-                                <option value="EUR">EUR - Euro</option>
-                                <option value="GBP">GBP - British Pound</option>
-                                <option value="JPY">JPY - Japanese Yen</option>
 
-
-                            </select>
-
+                        <div class="btn-submit">
+                            <button type="submit" class="button2">Update Currency</button>
                         </div>
-                        <div class="btn-submit"><button type="submit" class="button2">Update
-                                Currency</button> </div>
                     </form>
                 </div>
             </div>
         </section>
-        <section class="most"></section>
+        <section class="most"> This is temporary
+
+        </section>
         </div>
     </main>
 </body>
