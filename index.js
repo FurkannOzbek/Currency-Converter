@@ -21,7 +21,7 @@ const getName = document.getElementById("new-currency-name");
 const getRate = document.getElementById("new-currency-rate");
 const getCode = document.getElementById("new-currency-code");
 
-// Add options to a select element
+// Add options to the select elements
 function addOptions(select, rates) {
   for (const [currency, rateInfo] of Object.entries(rates)) {
     const newOption = document.createElement("option");
@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Currency converter function
+// Currency converter
 function convertCurrency(event) {
-  event.preventDefault(); // Prevent form submission
+  event.preventDefault();
   // Get the selected currencies and amount
   const selectedFromCurrency = selectFromElement.value;
   const selectedToCurrency = selectToElement.value;
@@ -54,14 +54,14 @@ function convertCurrency(event) {
   // Perform the conversion and render it
   const convertedAmount = (inputAmount / rateFrom) * rateTo;
   const convertedAmountString = convertedAmount.toFixed(5);
-  const lastTwoDigits = convertedAmountString.slice(-3); // Get the last two digits
+  const lastThreeDigits = convertedAmountString.slice(-3); // Get the last three digits
   const selectedToCurrencyInfo = currencies.rates[selectedToCurrency];
 
   amountWanted.innerHTML = `${inputAmount} ${selectedFromCurrency} =`;
   amountResult.innerHTML = `${convertedAmountString.slice(
     0,
     -3
-  )}<span class="last-two-digits">${lastTwoDigits}</span> ${
+  )}<span class="last-three-digits">${lastThreeDigits}</span> ${
     selectedToCurrencyInfo.text
   }`;
   ratesNumbers.innerHTML = `1 ${selectedFromCurrency} = ${(
@@ -98,7 +98,7 @@ function addCurrency(event) {
   } else {
     alert(`Currency code ${newCurrencyCode} already exists.`);
   }
-  console.log(currencies);
+  console.log(currencies); // for check if its added
 }
 
 // Update currency function
@@ -120,13 +120,12 @@ function updateCurrency(event) {
     alert(`Currency code ${updatedCurrencyCode} does not exist.`);
   }
 
-  console.log(currencies);
+  console.log(currencies); // for check if its updated
 }
 function swapCurrencies() {
   const fromCurrency = selectFromElement.value;
   const toCurrency = selectToElement.value;
 
-  // Swap the values of the "From Currency" and "To Currency" dropdowns
   selectFromElement.value = toCurrency;
   selectToElement.value = fromCurrency;
 }
