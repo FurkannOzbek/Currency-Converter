@@ -53,17 +53,15 @@ function convertCurrency(event) {
 
   // Perform the conversion and render it
   const convertedAmount = (inputAmount / rateFrom) * rateTo;
-  const convertedAmountString = convertedAmount.toFixed(5);
-  const lastThreeDigits = convertedAmountString.slice(-3); // Get the last three digits
+  const convertedAmountString = convertedAmount.toFixed(3);
+  const lastDigit = convertedAmountString.slice(-1); // Get the last three digits
   const selectedToCurrencyInfo = currencies.rates[selectedToCurrency];
 
   amountWanted.innerHTML = `${inputAmount} ${selectedFromCurrency} =`;
   amountResult.innerHTML = `${convertedAmountString.slice(
     0,
-    -3
-  )}<span class="last-three-digits">${lastThreeDigits}</span> ${
-    selectedToCurrencyInfo.text
-  }`;
+    -1
+  )}<span class="lastdigit">${lastDigit}</span> ${selectedToCurrencyInfo.text}`;
   ratesNumbers.innerHTML = `1 ${selectedFromCurrency} = ${(
     rateFrom / rateTo
   ).toFixed(4)} ${selectedToCurrency}`;
