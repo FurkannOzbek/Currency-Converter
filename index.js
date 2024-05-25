@@ -16,14 +16,14 @@ const selectToElement = document.getElementById("to-currency");
 const selectFromElement = document.getElementById("from-currency");
 const amount = document.getElementById("amount");
 const ratesNumbers = document.getElementById("rates");
-
 const getName = document.getElementById("new-currency-name");
 const getRate = document.getElementById("new-currency-rate");
 const getCode = document.getElementById("new-currency-code");
 
 // Add options to the select elements
 function addOptions(select, rates) {
-  for (const [currency, rateInfo] of Object.entries(rates)) {
+  for (const currency in rates) {
+    const rateInfo = rates[currency];
     const newOption = document.createElement("option");
     newOption.value = currency;
     newOption.text = `${currency} - ${rateInfo.text}`;
