@@ -114,8 +114,6 @@ function updateCurrency(event) {
     currencies.rates[updatedCurrencyCode].rate = updatedRate;
 
     alert(`Rate for currency ${updatedCurrencyCode} updated to ${updatedRate}`);
-  } else {
-    alert(`Currency code ${updatedCurrencyCode} does not exist.`);
   }
 
   console.log(currencies); // for check if its updated
