@@ -4,11 +4,17 @@ const currencies = {
   base: "EUR",
   text: "Euro",
   date: "2021-03-17",
-  rates: {
-    USD: { rate: 1.08, text: "US Dollar" },
-    GBP: { rate: 0.85, text: "British Pound" },
-    EUR: { rate: 1, text: "Euro" },
-  },
+  rates: [
+    { code: "USD", rate: 1.08, text: "US Dollar", updateDate: "12-05-2024" },
+    { code: "GBP", rate: 0.85, text: "British Pound", updateDate: "12-05-2024" },
+    { code: "EUR", rate: 1, text: "Euro", updateDate: "12-05-2024" },
+    { code: "JPY", rate: 170, text: "Japanese Yen", updateDate: "12-05-2024" },
+    { code: "INR", rate: 90.44, text: "Indian Rupee", updateDate: "12-05-2024" },
+    { code: "CHF", rate: 0.99, text: "Swiss Franc", updateDate: "12-05-2024" },
+    { code: "RUB", rate: 97.56, text: "Russian Rubles", updateDate: "12-05-2024" },
+    { code: "DKK", rate: 7.46, text: "Danish Krone", updateDate: "12-05-2024" },
+    { code: "TRY", rate: 35.03, text: "Turkish Liras", updateDate: "12-05-2024" },
+  ],
 };
 
 // Elements
@@ -22,13 +28,12 @@ const getCode = document.getElementById("new-currency-code");
 
 // Add options to the select elements
 function addOptions(select, rates) {
-  for (const currency in rates) {
-    const rateInfo = rates[currency];
+  rates.forEach((rateInfo) => {
     const newOption = document.createElement("option");
-    newOption.value = currency;
-    newOption.text = `${currency} - ${rateInfo.text}`;
+    newOption.value = rateInfo.code;
+    newOption.text = `${rateInfo.code} - ${rateInfo.text}`;
     select.appendChild(newOption);
-  }
+  });
 }
 
 // On load function
@@ -48,26 +53,28 @@ function convertCurrency(event) {
   const inputAmount = parseFloat(amount.value);
 
   // Get the exchange rates for the selected currencies
-  const rateFrom = currencies.rates[selectedFromCurrency].rate;
-  const rateTo = currencies.rates[selectedToCurrency].rate;
-
+  const rateFrom = currencies.rates.find((rate) => rate.code === selectedFromCurrency).rate; //
+  const rateTo = currencies.rates.find((rate) => rate.code === selectedToCurrency).rate; //
+  console.log(rateTo);
   // Perform the conversion and render it
   const convertedAmount = (inputAmount / rateFrom) * rateTo;
   const convertedAmountString = convertedAmount.toFixed(3);
+
+  const selectedToCurrencyText = currencies.rates.find(
+    (rate) => rate.code === selectedToCurrency
+  ).text; //
   const lastDigit = convertedAmountString.slice(-1); // Get the last three digits
-  const selectedToCurrencyInfo = currencies.rates[selectedToCurrency];
 
   amountWanted.innerHTML = `${inputAmount} ${selectedFromCurrency} =`;
   amountResult.innerHTML = `${convertedAmountString.slice(
     0,
     -1
-  )}<span class="lastdigit">${lastDigit}</span> ${selectedToCurrencyInfo.text}`;
-  ratesNumbers.innerHTML = `1 ${selectedFromCurrency} = ${(
-    rateFrom / rateTo
-  ).toFixed(4)} ${selectedToCurrency}`;
+  )}<span class="lastdigit">${lastDigit}</span> ${selectedToCurrencyText}`;
+  ratesNumbers.innerHTML = `1 ${selectedFromCurrency} = ${(rateTo / rateFrom).toFixed(
+    4
+  )} ${selectedToCurrency}`;
 }
 
-// Add new currency function
 function addCurrency(event) {
   event.preventDefault(); // Prevent form submission
 
@@ -75,15 +82,11 @@ function addCurrency(event) {
   const newCurrencyCode = getCode.value.toUpperCase();
   const newCurrencyName = getName.value;
 
-  // Add the new currency to the currencies object
-  if (!currencies.rates[newCurrencyCode]) {
-    currencies.rates[newCurrencyCode] = {
-      rate: newRate,
-      text: newCurrencyName,
-    };
-    alert(
-      `New currency ${newCurrencyCode} - ${newCurrencyName} added with rate ${newRate}`
-    );
+  // Check if the currency code already exists
+  const currencyExists = currencies.rates.some((rate) => rate.code === newCurrencyCode);
+
+  if (!currencyExists) {
+    currencies.rates.push({ code: newCurrencyCode, rate: newRate, text: newCurrencyName });
 
     // Add the new currency to all dropdowns
     const currencyDropdowns = document.querySelectorAll(".currency-dropdown");
@@ -93,10 +96,13 @@ function addCurrency(event) {
       newOption.text = `${newCurrencyCode} - ${newCurrencyName}`;
       dropdown.appendChild(newOption);
     });
+
+    alert(`New currency ${newCurrencyCode} - ${newCurrencyName} added with rate ${newRate}`);
   } else {
     alert(`Currency code ${newCurrencyCode} already exists.`);
   }
-  console.log(currencies); // for check if its added
+
+  console.log(currencies); // for check if it's added
 }
 
 // Update currency function
@@ -104,24 +110,51 @@ function updateCurrency(event) {
   event.preventDefault(); // Prevent form submission
 
   const updatedRate = parseFloat(document.getElementById("update-rate").value);
-  const updatedCurrencyCode = document
-    .getElementById("to-currency-update")
-    .value.toUpperCase();
+  const updatedCurrencyCode = document.getElementById("to-currency-update").value.toUpperCase();
 
-  // Check if the currency code exists in the currencies object
-  if (currencies.rates[updatedCurrencyCode]) {
-    // Update the rate of the currency
-    currencies.rates[updatedCurrencyCode].rate = updatedRate;
+  // Find the currency to update
+  const currencyToUpdate = currencies.rates.find((rate) => rate.code === updatedCurrencyCode);
 
+  if (currencyToUpdate) {
+    currencyToUpdate.rate = updatedRate;
     alert(`Rate for currency ${updatedCurrencyCode} updated to ${updatedRate}`);
+  } else {
+    alert(`Currency code ${updatedCurrencyCode} does not exist.`);
   }
 
-  console.log(currencies); // for check if its updated
+  console.log(currencies); // for check if it's updated
 }
+
 function swapCurrencies() {
   const fromCurrency = selectFromElement.value;
   const toCurrency = selectToElement.value;
 
   selectFromElement.value = toCurrency;
   selectToElement.value = fromCurrency;
+}
+
+// Grid creation for list
+const gridList = document.getElementById("gridList");
+
+currencies.rates.forEach((rate) => {
+  const newGrid = document.createElement("div");
+  newGrid.classList.add("grid-item");
+  newGrid.textContent = `${rate.code} - ${rate.text} - Rate = ${rate.rate}`;
+  gridList.appendChild(newGrid);
+});
+//
+function findCurrencyRate(searchQuery) {
+  const query = searchQuery.trim().toUpperCase();
+
+  const foundRate = currencies.rates.find((rate) => {
+    return rate.code.toUpperCase().includes(query) || rate.text.toUpperCase().includes(query);
+  });
+
+  const searchResult = document.getElementById("searchResult");
+
+  if (foundRate) {
+    searchResult.innerHTML = `Rate for ${foundRate.text} (${foundRate.code}): ${foundRate.rate}`;
+  } else {
+    searchResult.innerHTML = `Currency rate for ${searchQuery} not found.`;
+  }
 }
