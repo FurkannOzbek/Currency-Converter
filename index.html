@@ -65,11 +65,13 @@
         </section>
         <section class="list-currencies">
             <div id="searchTab" class="searchTab">
-                <input type="text" id="searchInput" placeholder="Enter currency code">
+                <h1 class="h1-quick"> Quick Search</h1>
+                <input type="text" id="searchInput" placeholder="Enter currency code or name">
                 <button class="searchButton" onclick="findCurrencyRate(getElementById('searchInput').value)"> Search
                 </button>
-                <div id="searchResult"> </div>
+                <div id="searchResult" class="searchResult"> </div>
             </div>
+            <h1 class="h1-list"> List of the Currencies</h1>
             <div id="gridList" class="gridList">
             </div>
 

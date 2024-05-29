@@ -88,8 +88,8 @@ button {
   cursor: pointer;
   font-size: 16px;
 }
-.convertButton {
-  background-color: #007bff;
+.convertButton:hover {
+  background-color: white;
 }
 
 button:hover {
@@ -249,4 +249,42 @@ button:hover {
 #currencyList option:checked {
   background-color: #007bff;
   color: #fff;
+}
+.searchTab {
+  text-align: center;
+  margin: 20px;
+  margin-bottom: 10%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  max-width: 600px;
+}
+.gridList {
+  margin: 7em;
+}
+#searchInput {
+  width: calc(100% - 90px);
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+::placeholder {
+  text-align: center;
+}
+.searchButton {
+  margin: 2rem;
+  background-color: #007bff;
+}
+.searchResult {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  color: gray;
 }

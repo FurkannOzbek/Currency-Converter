@@ -63,7 +63,7 @@ function convertCurrency(event) {
   const selectedToCurrencyText = currencies.rates.find(
     (rate) => rate.code === selectedToCurrency
   ).text; //
-  const lastDigit = convertedAmountString.slice(-1); // Get the last three digits
+  const lastDigit = convertedAmountString.slice(-1);
 
   amountWanted.innerHTML = `${inputAmount} ${selectedFromCurrency} =`;
   amountResult.innerHTML = `${convertedAmountString.slice(
@@ -76,13 +76,12 @@ function convertCurrency(event) {
 }
 
 function addCurrency(event) {
-  event.preventDefault(); // Prevent form submission
+  event.preventDefault();
 
   const newRate = parseFloat(getRate.value);
   const newCurrencyCode = getCode.value.toUpperCase();
   const newCurrencyName = getName.value;
 
-  // Check if the currency code already exists
   const currencyExists = currencies.rates.some((rate) => rate.code === newCurrencyCode);
 
   if (!currencyExists) {
@@ -142,9 +141,9 @@ currencies.rates.forEach((rate) => {
   newGrid.textContent = `${rate.code} - ${rate.text} - Rate = ${rate.rate}`;
   gridList.appendChild(newGrid);
 });
-//
-function findCurrencyRate(searchQuery) {
-  const query = searchQuery.trim().toUpperCase();
+// Search currency
+function findCurrencyRate(input) {
+  const query = input.trim().toUpperCase();
 
   const foundRate = currencies.rates.find((rate) => {
     return rate.code.toUpperCase().includes(query) || rate.text.toUpperCase().includes(query);
@@ -153,8 +152,10 @@ function findCurrencyRate(searchQuery) {
   const searchResult = document.getElementById("searchResult");
 
   if (foundRate) {
-    searchResult.innerHTML = `Rate for ${foundRate.text} (${foundRate.code}): ${foundRate.rate}`;
+    searchResult.innerHTML = `1 Euro = ${foundRate.rate} ${foundRate.text} (${
+      foundRate.code
+    })<br> 1 ${foundRate.code} = ${(1 / foundRate.rate).toFixed(4)} Euro `;
   } else {
-    searchResult.innerHTML = `Currency rate for ${searchQuery} not found.`;
+    searchResult.innerHTML = `Currency rate for ${input} not found.`;
   }
 }
