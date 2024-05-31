@@ -83,11 +83,13 @@ body {
 button {
   align-self: flex-start;
   padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+
   border: none;
   cursor: pointer;
   font-size: 16px;
+}
+.convertButton:hover {
+  background-color: white;
 }
 
 button:hover {
@@ -135,6 +137,7 @@ button:hover {
   margin-top: 100px;
   display: flex;
   flex-direction: row;
+
   justify-content: space-evenly;
 }
 
@@ -170,6 +173,9 @@ button:hover {
   color: white;
   margin-bottom: 50px;
 }
+.btn-convert {
+  background-color: #007bff;
+}
 .button {
   background-color: green;
 }
@@ -193,6 +199,92 @@ button:hover {
 .rates {
   margin: 0;
   font-size: 1+6px;
+  font-weight: 600;
+  color: gray;
+}
+.gridList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+.grid-item {
+  background-color: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+}
+/* Style for the input field */
+#searchInput {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 300px;
+}
+
+/* Style for the dropdown list */
+#currencyList {
+  margin-top: 5px;
+  padding: 0;
+  list-style: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+/* Style for each option in the dropdown list */
+#currencyList option {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Style for the option when hovered */
+#currencyList option:hover {
+  background-color: #f4f4f4;
+}
+
+/* Style for the option when selected */
+#currencyList option:checked {
+  background-color: #007bff;
+  color: #fff;
+}
+.searchTab {
+  text-align: center;
+  margin: 20px;
+  margin-bottom: 10%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  max-width: 600px;
+}
+.gridList {
+  margin: 7em;
+}
+#searchInput {
+  width: calc(100% - 90px);
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+::placeholder {
+  text-align: center;
+}
+.searchButton {
+  margin: 2rem;
+  background-color: #007bff;
+}
+.searchResult {
+  margin: 0;
+  font-size: 26px;
   font-weight: 600;
   color: gray;
 }
