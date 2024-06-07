@@ -17,6 +17,8 @@ const currencies = {
   ],
 };
 
+let alertCurrencies = [];
+
 // Elements
 const selectToElement = document.getElementById("to-currency");
 const selectFromElement = document.getElementById("from-currency");
@@ -175,7 +177,7 @@ const openAndCloseAlert = (hour, minute, second, message) => {
   } else {
     isOpen = false;
   }
-  console.log(isOpen);
+
   setTimeout(() => {
     alert(message);
 
@@ -186,4 +188,44 @@ const openAndCloseAlert = (hour, minute, second, message) => {
 openAndCloseAlert(9, 0, 0, "Market is open now!"); // Opening Time alert
 openAndCloseAlert(17, 0, 0, "Market is closed now!"); // Closing Time alert
 
-const observer = () => {}; // will construct later
+const pushToAlertList = (event) => {
+  event.preventDefault();
+  const alertCurrency = document.getElementById("to-currency-alert").value;
+  let alertRate = document.getElementById("alert-rate").value;
+  const objAlert = {
+    code: alertCurrency,
+    rate: alertRate,
+  };
+  alertCurrencies.push(objAlert);
+  console.log(alertCurrencies);
+};
+
+function observer() {
+  for (let i = 0; i < alertCurrencies.length; i++) {
+    const alertCurrency = alertCurrencies[i];
+    const currentRate = currencies.rates.find((rate) => rate.code === alertCurrency.code).rate;
+
+    if (currentRate !== undefined) {
+      if (currentRate == alertCurrency.rate) {
+        alert(
+          `Alert: ${alertCurrency.code} has reached the alert rate of ${alertCurrency.rate}. Current rate: ${currentRate}`
+        );
+        alertCurrencies.splice(i, 1); // Remove the alert from the list
+        i--; // Adjust the index after removal
+      }
+    }
+  }
+}
+let marketStatus = () => {
+  console.log(isOpen);
+  const marketStatusElement = document.getElementById("market-status-icon");
+  const marketStatusText = document.getElementById("market-status-text");
+  marketStatusText.textContent = isOpen ? "Market is Open" : "Market is Closed";
+  marketStatusElement.className = isOpen ? "open" : "closed";
+};
+
+// Call this function to update market status based on your logic
+// For example, you can call it with true when the market opens and false when it closes
+// For testing, I'll call it immediately with true
+marketStatus();
+setInterval(observer, 5000);
