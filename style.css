@@ -275,9 +275,11 @@ button:hover {
 }
 .gridList {
   margin: 7em;
+
   font-size: 20px;
   font-weight: 600;
   color: gray;
+
 }
 #searchInput {
   width: calc(100% - 90px);
@@ -300,6 +302,7 @@ button:hover {
   font-weight: 600;
   color: gray;
 }
+
 #market-status {
   display: flex;
 }
@@ -323,3 +326,4 @@ button:hover {
 #market-status-icon.closed {
   background-color: red;
 }
+

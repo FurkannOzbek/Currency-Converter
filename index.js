@@ -161,6 +161,7 @@ function findCurrencyRate(input) {
     searchResult.innerHTML = `Currency rate for ${input} not found.`;
   }
 }
+
 let isOpen;
 const openAndCloseAlert = (hour, minute, second, message) => {
   const moment = new Date();
@@ -226,3 +227,4 @@ let marketStatus = () => {
 // For testing, I'll call it immediately with true
 marketStatus();
 setInterval(observer, 5000);
+
