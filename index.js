@@ -164,6 +164,7 @@ function findCurrencyRate(input) {
 let isOpen;
 const openAndCloseAlert = (hour, minute, second, message) => {
   const moment = new Date();
+
   const targetTime = new Date();
   targetTime.setHours(hour, minute, second, 0);
   let timeDifference = targetTime - moment;
@@ -172,11 +173,7 @@ const openAndCloseAlert = (hour, minute, second, message) => {
     targetTime.setDate(targetTime.getDate() + 1);
     timeDifference = targetTime - moment;
   }
-  if (moment.getHours() > 9 && moment.getHours() < 17) {
-    isOpen = true;
-  } else {
-    isOpen = false;
-  }
+  isOpen = moment.getHours() > 9 && moment.getHours() < 17;
 
   setTimeout(() => {
     alert(message);
