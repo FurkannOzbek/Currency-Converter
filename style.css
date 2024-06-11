@@ -316,10 +316,10 @@ button:hover {
   margin-bottom: 50px;
 }
 
-#market-status.open {
+#market-status-icon.open {
   background-color: green;
 }
 
-#market-status.closed {
+#market-status-icon.closed {
   background-color: red;
 }
