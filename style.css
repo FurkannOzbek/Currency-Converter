@@ -60,6 +60,11 @@ body {
   margin-bottom: 5px;
   font-weight: bold;
 }
+form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
 .form-group input {
   width: 360px;
   height: 70px;
@@ -148,6 +153,7 @@ button:hover {
   justify-content: space-between;
   min-width: 50px;
   margin-bottom: 30px;
+  justify-content: center;
 }
 .form-group1 label {
   margin-bottom: 15px;
@@ -181,6 +187,9 @@ button:hover {
 }
 .button2 {
   background-color: rgb(21, 154, 207);
+}
+.button3 {
+  background-color: red;
 }
 .amountWanted {
   margin: 0;
@@ -266,6 +275,11 @@ button:hover {
 }
 .gridList {
   margin: 7em;
+
+  font-size: 20px;
+  font-weight: 600;
+  color: gray;
+
 }
 #searchInput {
   width: calc(100% - 90px);
@@ -288,3 +302,28 @@ button:hover {
   font-weight: 600;
   color: gray;
 }
+
+#market-status {
+  display: flex;
+}
+#market-status-icon {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 30px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: red;
+  margin-right: 15px;
+  margin-bottom: 50px;
+}
+
+#market-status-icon.open {
+  background-color: green;
+}
+
+#market-status-icon.closed {
+  background-color: red;
+}
+
