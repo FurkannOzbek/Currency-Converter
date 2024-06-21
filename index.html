@@ -30,7 +30,7 @@
 
         <section class="currency-converter-section">
 
-            <form onsubmit="convertCurrency(event)" id="currency-converter-form">
+            <form id="currency-converter-form">
                 <div id="market-status">
                     <div id="market-status-icon" class="market-status-icon"></div>
                     <div id="market-status-text" class="market-status-text"></div>
@@ -48,8 +48,7 @@
                         </select>
                     </div>
                     <div class="btn-exchange">
-                        <button class="convertButton" style="font-size: 24px ;" type="button"
-                            onclick="swapCurrencies()">
+                        <button id="swapButton" class="convertButton" style="font-size: 24px ;" type="button">
                             &#8644; <!-- Unicode character for a double arrow -->
                         </button>
                     </div>
@@ -62,7 +61,7 @@
                     </div>
                 </div>
                 <div class="btn-container">
-                    <button type="submit" class="btn-convert" onclick="convertCurrency(event)">Convert</button>
+                    <button type="submit" class="btn-convert">Convert</button>
                 </div>
                 <p id="amountWanted" class="amountWanted"> </p>
                 <p id="amountResult" class="amountResult"></p>
@@ -74,7 +73,7 @@
             <div id="searchTab" class="searchTab">
                 <h1 class="h1-quick"> Quick Search</h1>
                 <input type="text" id="searchInput" placeholder="Enter currency code or name">
-                <button class="searchButton" onclick="findCurrencyRate(getElementById('searchInput').value)"> Search
+                <button id="searchButton" class="searchButton"> Search
                 </button>
                 <div id="searchResult" class="searchResult"> </div>
             </div>
@@ -89,7 +88,7 @@
             <div class="container">
                 <div class="form-container">
                     <h2>Add New Currency</h2>
-                    <form id="add-currency-form" onsubmit="addCurrency(event)">
+                    <form id="add-currency-form">
                         <div class="form-group1">
                             <label for="new-currency-rate">Rate</label>
                             <input type="number" step="0.00001" id="new-currency-rate" name="new-currency-rate"
@@ -111,7 +110,7 @@
 
                 <div class="form-container">
                     <h2>Currency Update</h2>
-                    <form id="update-currency-form" onsubmit="updateCurrency(event)">
+                    <form id="update-currency-form">
                         <div class="form-group1">
                             <label for="to-currency">Currency</label>
                             <select class="currency-dropdown" id="to-currency-update" name="to-currency"
@@ -130,7 +129,7 @@
                 </div>
                 <div class="form-container">
                     <h2>Currency Alert</h2>
-                    <form id="alert-currency-form" onsubmit="pushToAlertList(event)">
+                    <form id="alert-currency-form">
                         <div class="form-group1">
                             <label for="to-currency">Currency</label>
                             <select class="currency-dropdown" id="to-currency-alert" name="to-currency-alert"
