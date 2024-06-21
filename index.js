@@ -185,7 +185,7 @@ async function getData() {
   pushAlertToList.addEventListener("submit", async (event) => {
     event.preventDefault();
     const alertCurrency = document.getElementById("to-currency-alert").value;
-    let alertRate = document.getElementById("alert-rate").value;
+    const alertRate = document.getElementById("alert-rate").value;
     const objAlert = {
       code: alertCurrency,
       rate: alertRate,
@@ -195,20 +195,17 @@ async function getData() {
   });
 
   function observer() {
-    for (let i = 0; i < alertCurrencies.length; i++) {
-      const alertCurrency = alertCurrencies[i];
+    alertCurrencies = alertCurrencies.filter((alertCurrency) => {
       const currentRate = myData.rates.find((rate) => rate.code === alertCurrency.code).rate;
 
-      if (currentRate !== undefined) {
-        if (currentRate == alertCurrency.rate) {
-          alert(
-            `Alert: ${alertCurrency.code} has reached the alert rate of ${alertCurrency.rate}. Current rate: ${currentRate}`
-          );
-          alertCurrencies.splice(i, 1); // Remove the alert from the list
-          i--; // Adjust the index after removal
-        }
+      if (currentRate !== undefined && currentRate == alertCurrency.rate) {
+        alert(
+          `Alert: ${alertCurrency.code} has reached the alert rate of ${alertCurrency.rate}. Current rate: ${currentRate}`
+        );
+        return false; // Remove this alert from the list
       }
-    }
+      return true; // Keep this alert in the list
+    });
   }
   let marketStatus = () => {
     console.log(isOpen);
@@ -225,3 +222,4 @@ async function getData() {
   setInterval(observer, 5000);
 }
 getData();
+console.log(alertCurrencies);
