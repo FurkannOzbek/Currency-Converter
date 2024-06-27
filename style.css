@@ -5,7 +5,6 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-/* CSS for the first section */
 
 .header {
   height: 400px;
@@ -98,7 +97,13 @@ button {
 }
 
 button:hover {
+  background-color: #15b300;
+}
+.button2:hover {
   background-color: #0056b3;
+}
+.button3:hover {
+  background-color: #8b0101;
 }
 
 #conversion-result {
@@ -109,20 +114,17 @@ button:hover {
   display: flex;
   margin-top: 20px;
 }
-/* CSS for the second section(list) */
 
 .list-currencies {
   margin: 10%;
 }
 .h1-list {
   color: white;
-  font-family: "Lato", sans-serif;
+  font-family: "Montserrat", sans-serif;
   text-align: center;
   font-size: 28px;
   color: #c8d9ed;
 }
-
-/* CSS for the third section(add update) */
 
 .form-container {
   width: 25%;
@@ -136,7 +138,6 @@ button:hover {
   min-height: 200px;
 }
 
-/* Style for the form container */
 .container {
   text-align: center;
   margin-top: 100px;
@@ -152,6 +153,7 @@ button:hover {
   flex: 1;
   justify-content: space-between;
   min-width: 50px;
+  height: 100%;
   margin-bottom: 30px;
   justify-content: center;
 }
@@ -180,15 +182,54 @@ button:hover {
   margin-bottom: 50px;
 }
 .btn-convert {
-  background-color: #007bff;
+  background-color: #03c9b8;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 .button {
   background-color: green;
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 .button2 {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
   background-color: rgb(21, 154, 207);
 }
 .button3 {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
   background-color: red;
 }
 .amountWanted {
@@ -221,7 +262,7 @@ button:hover {
   padding: 20px;
   text-align: center;
 }
-/* Style for the input field */
+
 #searchInput {
   padding: 10px;
   font-size: 16px;
@@ -230,7 +271,6 @@ button:hover {
   width: 300px;
 }
 
-/* Style for the dropdown list */
 #currencyList {
   margin-top: 5px;
   padding: 0;
@@ -279,7 +319,6 @@ button:hover {
   font-size: 20px;
   font-weight: 600;
   color: gray;
-
 }
 #searchInput {
   width: calc(100% - 90px);
@@ -295,6 +334,19 @@ button:hover {
 .searchButton {
   margin: 2rem;
   background-color: #007bff;
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.searchButton:hover {
+  background-color: #0056b3;
 }
 .searchResult {
   margin: 0;
@@ -327,3 +379,137 @@ button:hover {
   background-color: red;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  color: #333;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23999" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 8px 10px;
+}
+
+select:focus {
+  border-color: #66afe9;
+  outline: none;
+  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+select:hover {
+  background-color: #f1f1f1;
+}
+option {
+  padding: 100px;
+}
+
+.currency-input {
+  position: relative;
+  width: 100%;
+}
+
+.currency-input input {
+  width: 100%;
+  padding-left: 40px;
+  margin-left: -10px;
+  box-sizing: border-box;
+  font-size: 24px;
+  font-weight: 50;
+}
+
+.currency-input .currency-symbol {
+  position: absolute;
+  top: 55%;
+  left: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 24px;
+  color: #333;
+}
+#to-currency-update {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+  height: auto;
+}
+#to-currency-alert {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+  height: auto;
+}
+.parallax {
+  background-image: url("https://cdn.pixabay.com/photo/2016/10/10/22/38/business-1730089_960_720.jpg");
+  margin-top: 100px;
+  margin-bottom: 100px;
+  min-height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 40px;
+}
+.infoSection {
+  background-color: #00415a;
+  min-height: 400px;
+  margin-top: 200px;
+}
+.info-section {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 50px 0;
+  background-color: #00415a;
+}
+
+.info-item {
+  text-align: center;
+  max-width: 300px;
+  padding: 20px;
+  background-color: #00415a;
+  border-radius: 10px;
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.info-icon {
+  font-size: 50px;
+  color: #2491ac;
+  margin-bottom: 20px;
+}
+
+.info-text h3 {
+  font-size: 24px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.info-text p {
+  font-size: 16px;
+  color: #ccc;
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 700;
+}
