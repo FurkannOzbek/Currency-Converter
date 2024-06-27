@@ -29,9 +29,11 @@ async function getData() {
     const selectedFromCurrency = selectFromElement.value;
     const fromCurrencyData = myData.rates.find((rate) => rate.code === selectedFromCurrency);
     if (fromCurrencyData) {
-      const symbol = fromCurrencyData.symbol || ""; // Default to empty string if no symbol found
-
-      document.getElementById("currency-symbol").innerHTML = fromCurrencyData.symbol;
+      if (fromCurrencyData.symbol) {
+        document.getElementById("currency-symbol").innerHTML = fromCurrencyData.symbol;
+      } else {
+        document.getElementById("currency-symbol").innerHTML = "";
+      }
     }
   }
 
@@ -110,8 +112,7 @@ async function getData() {
     console.log(myData); // for check if it's added
   });
 
-  // Update currency function
-
+  // Update the grid
   const formUpdate = document.getElementById("update-currency-form");
   formUpdate.addEventListener("submit", async (event) => {
     event.preventDefault(); // Prevent form submission
@@ -128,27 +129,29 @@ async function getData() {
     } else {
       alert(`Currency code ${updatedCurrencyCode} does not exist.`);
     }
-
+    gridCreate();
     console.log(myData); // for check if it's updated
   });
   const buttonSwap = document.getElementById("swapButton");
   buttonSwap.addEventListener("click", async () => {
     const fromCurrency = selectFromElement.value;
     const toCurrency = selectToElement.value;
-
     selectFromElement.value = toCurrency;
     selectToElement.value = fromCurrency;
+    updateCurrencySymbol();
   });
 
   // Grid creation for list
-  const gridList = document.getElementById("gridList");
-
-  myData.rates.forEach((rate) => {
-    const newGrid = document.createElement("div");
-    newGrid.classList.add("grid-item");
-    newGrid.textContent = `${rate.code} - ${rate.text} - Rate = ${rate.rate}`;
-    gridList.appendChild(newGrid);
-  });
+  function gridCreate() {
+    const gridList = document.getElementById("gridList");
+    gridList.innerHTML = "";
+    myData.rates.forEach((rate) => {
+      const newGrid = document.createElement("div");
+      newGrid.classList.add("grid-item");
+      newGrid.textContent = `${rate.code} - ${rate.text} - Rate = ${rate.rate}`;
+      gridList.appendChild(newGrid);
+    });
+  }
   // Search currency
 
   const buttonSearch = document.getElementById("searchButton");
@@ -234,8 +237,7 @@ async function getData() {
   marketStatus();
   setInterval(observer, 5000);
 
-  // Symbol for amount
-
   updateCurrencySymbol();
+  gridCreate();
 }
 getData();

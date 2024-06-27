@@ -97,7 +97,7 @@ button {
 }
 
 button:hover {
-  background-color: #15b300;
+  background-color: green;
 }
 .button2:hover {
   background-color: #0056b3;
@@ -193,8 +193,11 @@ button:hover {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+.btn-convert:hover {
+  background-color: #018075;
+}
 .button {
-  background-color: green;
+  background-color: #15b300;
   display: inline-block;
   padding: 12px 24px;
   font-size: 16px;
