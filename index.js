@@ -3,7 +3,7 @@ async function getData() {
     "https://raw.githubusercontent.com/FurkannOzbek/FurkannOzbek.github.io/main/currencies.json"
   );
   const myData = await response.json();
-
+  console.log(JSON.stringify(response));
   let alertCurrencies = [];
 
   // Elements
@@ -24,7 +24,18 @@ async function getData() {
       select.appendChild(newOption);
     });
   }
+  // Function to update the currency symbol
+  function updateCurrencySymbol() {
+    const selectedFromCurrency = selectFromElement.value;
+    const fromCurrencyData = myData.rates.find((rate) => rate.code === selectedFromCurrency);
+    if (fromCurrencyData) {
+      const symbol = fromCurrencyData.symbol || ""; // Default to empty string if no symbol found
 
+      document.getElementById("currency-symbol").innerHTML = fromCurrencyData.symbol;
+    }
+  }
+
+  selectFromElement.addEventListener("change", updateCurrencySymbol);
   // On load function
 
   const currencyDropdowns = document.querySelectorAll(".currency-dropdown");
@@ -85,6 +96,11 @@ async function getData() {
         newOption.text = `${newCurrencyCode} - ${newCurrencyName}`;
         dropdown.appendChild(newOption);
       });
+      // Add the new currency to the grid list
+      const newGrid = document.createElement("div");
+      newGrid.classList.add("grid-item");
+      newGrid.textContent = `${newCurrencyCode} - ${newCurrencyName} - Rate = ${newRate}`;
+      gridList.appendChild(newGrid);
 
       alert(`New currency ${newCurrencyCode} - ${newCurrencyName} added with rate ${newRate}`);
     } else {
@@ -153,7 +169,7 @@ async function getData() {
         foundRate.code
       })<br> 1 ${foundRate.code} = ${(1 / foundRate.rate).toFixed(4)} Euro `;
     } else {
-      searchResult.innerHTML = `Currency rate for ${input} not found.`;
+      searchResult.innerHTML = `Currency rate for ${buttonSearchInput} not found. Please try with different letters`;
     }
   });
 
@@ -208,18 +224,18 @@ async function getData() {
     });
   }
   let marketStatus = () => {
-    console.log(isOpen);
+    console.log(`is open : ${isOpen}`);
     const marketStatusElement = document.getElementById("market-status-icon");
     const marketStatusText = document.getElementById("market-status-text");
     marketStatusText.textContent = isOpen ? "Market is Open" : "Market is Closed";
     marketStatusElement.className = isOpen ? "open" : "closed";
   };
 
-  // Call this function to update market status based on your logic
-  // For example, you can call it with true when the market opens and false when it closes
-  // For testing, I'll call it immediately with true
   marketStatus();
   setInterval(observer, 5000);
+
+  // Symbol for amount
+
+  updateCurrencySymbol();
 }
 getData();
-console.log(alertCurrencies);
