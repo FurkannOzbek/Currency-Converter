@@ -13,7 +13,6 @@ An application for currency convert
 *  Instant Currency Search: Quickly locate preferred currencies using a search feature.
 *  Currency List: Access a detailed list of currencies.
 *  Dynamic Currency Management: Add new currencies by specifying the currency code and exchange rate, or update existing currencies to reflect current values.
-*  Update existed currency
 *  Custom Currency Alerts: Set personalized alerts to notify users when a specific currency reaches the desired exchange rate.
 *  Market Open/Close Indicator: Stay informed with real-time indicators for market opening and closing times for various currencies.
 
